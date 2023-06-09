@@ -23,7 +23,6 @@ const Dashboard: App.TNextPageWithLayout<ISearchProps> = ({ movies }) => {
     <>
       <Head>
         <title>Dashboard - Searching {router.query.s}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="h-24" />
       <section>

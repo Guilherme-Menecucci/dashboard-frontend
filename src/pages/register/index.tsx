@@ -52,7 +52,6 @@ const Register: App.TNextPageWithLayout<IRegisterProps> = ({ providers }) => {
     <>
       <Head>
         <title>Register</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <MountAnimation nodeRef={nodeRef}>
         <div ref={nodeRef} className="w-full bg-inherit pb-8">

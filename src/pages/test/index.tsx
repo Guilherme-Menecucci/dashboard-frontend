@@ -76,7 +76,6 @@ const Test: App.TNextPageWithLayout = () => {
     <>
       <Head>
         <title>Test Components</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="min-h-full w-full">
         <Card title="Toast">

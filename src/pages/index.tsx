@@ -24,7 +24,6 @@ const Dashboard: App.TNextPageWithLayout<IDashboardProps> = ({ movies }) => {
     <>
       <Head>
         <title>Dashboard - Home</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       {nowPlaying ? (
         <Hero total={nowPlaying.length}>
@@ -117,7 +116,7 @@ const Dashboard: App.TNextPageWithLayout<IDashboardProps> = ({ movies }) => {
                     // TODO: Componentization
                     <div
                       key={movie.id}
-                      className="group/movie-card flex aspect-[20/7.55] h-full cursor-pointer border-4 border-brutal-black bg-brutal-surface text-brutal-on-surface transition-all hover:shadow-neubrutalism hover:shadow-brutal-black"
+                      className="group/movie-card flex aspect-[20/7.55] h-full cursor-pointer border-2 border-brutal-black bg-brutal-surface text-brutal-on-surface transition-all hover:shadow-neubrutalism hover:shadow-brutal-black"
                     >
                       <div className="relative h-full w-2/3 border-r-4 border-brutal-black">
                         <TMDBImage

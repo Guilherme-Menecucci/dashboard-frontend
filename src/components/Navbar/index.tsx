@@ -1,113 +1,94 @@
-/* eslint-disable @next/next/no-img-element */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useMemo } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { IoLogOutOutline } from 'react-icons/io5';
 
-import { TNavbarProps } from '~@types/components/Navbar';
+import { env } from '~@env/client.mjs';
 
-const defineTranslate = (val: number) => 'translate3D(' + val + '%, 0, 0)';
+import { useSession } from '~@lib/context/session.context';
 
-const Navbar = ({ isOpen = false, onCloseNav }: TNavbarProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const resizableRef = useRef<HTMLDivElement>(null);
-  const [isResizing, setIsResizing] = useState(false);
+import { navOptions } from '~@data/navOptions';
 
-  const startResizing = useCallback(() => {
-    console.count('startResizing');
-    setIsResizing(true);
-  }, []);
+import Typography from '~@components/Typography';
+import { NavIconItem, NavItem } from '~@components/Navbar/NavItem';
 
-  const stopResizing = useCallback(() => {
-    setIsResizing(false);
-    if (isOpen != true && containerRef.current && resizableRef.current) {
-      // Catch percent from translate3D(/-100/%, 0, 0)
-      const { x, width } = resizableRef.current.getBoundingClientRect();
-      // let x = /-?\d*(?:\.\d*)?(?=%)/.exec(resizableRef.current.style.getPropertyValue('transform'));
+const NavComponent: React.FunctionComponent = () => {
+  const {
+    data: { session },
+  } = useSession();
 
-      // If moved less than 50% - close
-      // If moved more than 50% - open
-      const perc = -x / width > 0.5 ? -100 : 0;
+  const { asPath } = useRouter();
 
-      resizableRef.current.style.transform = defineTranslate(perc);
-      if (perc == -100) {
-        setTimeout(() => containerRef.current?.removeAttribute('open'), 150);
-      }
-    }
-  }, [isOpen]);
-
-  const closeSideBar = useCallback(() => {
-    if (containerRef.current && resizableRef.current) {
-      resizableRef.current.style.transform = defineTranslate(-100);
-      setTimeout(() => containerRef.current?.removeAttribute('open'), 150);
-    }
-
-    onCloseNav && onCloseNav();
-  }, [onCloseNav]);
-
-  const resize = useCallback(
-    (event: MouseEvent) => {
-      if (isResizing && containerRef.current && resizableRef.current) {
-        const mouseMove = event.clientX - 10;
-        const size = mouseMove > 320 ? 320 : mouseMove < 0 ? 0 : mouseMove;
-        const perc = -100 + (size / 320) * 100;
-
-        resizableRef.current.style.transform = defineTranslate(perc);
-        containerRef.current.setAttribute('open', '');
-      }
-    },
-    [isResizing],
+  const renderNavs = useMemo(
+    () =>
+      navOptions.map(({ icon: Icon, title, href }) => (
+        <NavIconItem key={title} href={href} Icon={Icon} title={title} active={href === asPath} />
+      )),
+    [asPath],
   );
 
-  useEffect(() => {
-    if (isOpen && containerRef.current) {
-      containerRef.current.setAttribute('open', '');
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    console.count('UseEffect');
-    window.addEventListener('mousemove', resize);
-    window.addEventListener('mouseup', stopResizing);
-
-    return () => {
-      console.count('UseEffect CleanUp');
-      window.removeEventListener('mousemove', resize);
-      window.removeEventListener('mouseup', stopResizing);
-    };
-  }, [resize, stopResizing]);
-
   return (
-    <div
-      ref={containerRef}
-      className="group/side invisible absolute inset-0 z-50 bg-transparent open:visible"
-    >
-      <div
-        className="invisible absolute inset-0 translate-y-0 bg-black/50 transition-opacity group-open/side:visible"
-        style={{ transitionDuration: '200ms' }}
-        onClick={closeSideBar}
-      />
-      <div
-        className="absolute inset-y-0 left-0 w-60 bg-brutal-white p-0 transition-transform ease-linear after:visible after:absolute after:inset-y-0 after:left-full after:w-5 group-open/side:translate-x-0"
-        onMouseDown={startResizing}
-        style={{
-          transform: isOpen ? defineTranslate(0) : defineTranslate(-100),
-        }}
-        ref={resizableRef}
-      >
-        <div onMouseDown={e => e.preventDefault()} className="min-h-full w-full">
-          <div>
-            <img src="" alt="" />
-          </div>
-          <ul>
-            <li>
-              <img src="" alt="Logo" />
-            </li>
-            <li>Home</li>
-            <li>Users</li>
-            <li>Conferences</li>
-          </ul>
+    <>
+      <div className="hidden h-full w-2/12 overflow-x-hidden border-r-4 border-brutal-black bg-brutal-surface p-4 transition-[width] lg:flex lg:w-28 lg:flex-col group-[.nav-open]/layout:lg:w-4/12 2xl:w-3/12 min-[1792px]:w-2/12">
+        <div className="mx-auto flex h-full w-full flex-col sm:w-[4.5rem] group-[.nav-open]/layout:sm:w-full 2xl:w-full">
+          <Typography
+            component="div"
+            variant="heading"
+            size="large"
+            className="text-shadow-neubrutalism relative h-16 self-center px-4 text-center tracking-widest text-brutal-primary"
+            emphasis="full"
+            emphasisColor="secondary"
+          >
+            <span className="sm:hidden group-[.nav-open]/layout:sm:block 2xl:block">Dashboard</span>
+            <span className="sm:block group-[.nav-open]/layout:sm:hidden 2xl:hidden">D</span>
+          </Typography>
+          <nav className="mt-5 flex h-full w-full flex-col items-stretch gap-2">
+            <div className="border-t-4 border-brutal-black" />
+            {session && (
+              <>
+                <ul>
+                  <NavItem>
+                    <span className="relative aspect-square h-10 border-2 border-brutal-white shadow-neubrutalism shadow-brutal-white">
+                      <Image
+                        src={`${env.NEXT_PUBLIC_API_URL}/profile/${session.id}`}
+                        alt={session.displayName}
+                        layout="fill"
+                      />
+                    </span>
+                    <div className="sm:hidden group-[.nav-open]/layout:sm:block 2xl:block">
+                      <Typography component="h2" variant="title" size="large">
+                        {session.displayName}
+                      </Typography>
+                      <Typography component="h2" variant="label" size="large">
+                        {session.login}
+                      </Typography>
+                    </div>
+                  </NavItem>
+                </ul>
+                <div className="border-t-4 border-brutal-black" />
+              </>
+            )}
+            <ul>{renderNavs}</ul>
+            <div className="mt-auto border-t-4 border-brutal-black" />
+            <ul>
+              <NavIconItem
+                Icon={IoLogOutOutline}
+                title="Logout"
+                href="/logout"
+                className="cursor-pointer text-brutal-red"
+                isHover={false}
+              />
+            </ul>
+          </nav>
         </div>
       </div>
-    </div>
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t-4 border-brutal-black bg-brutal-surface pt-2 pb-4 lg:hidden">
+        <nav className="flex w-full flex-col gap-6">
+          <ul className="flex justify-around">{renderNavs}</ul>
+        </nav>
+      </div>
+    </>
   );
 };
 
-export default Navbar;
+export default NavComponent;

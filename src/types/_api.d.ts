@@ -1,3 +1,4 @@
+import { IconType } from 'react-icons/lib';
 import { App } from './_app';
 
 declare namespace TMDBApi {
@@ -28,6 +29,14 @@ declare namespace TMDBApi {
 }
 
 declare namespace Api {
+  export type TNavOption = {
+    icon: IconType;
+    title: string;
+    href: string;
+  };
+
+  export type TNavOptions = TNavOption[];
+
   export type TProviderId = 'google' | 'github' | 'discord';
 
   export type TProvider = {

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import HoverComponent from '~@components/HoverComponent';
 
 import { TProvidersProps } from '~@types/components/Providers';
 
@@ -14,20 +15,21 @@ const Providers = ({ providers }: TProvidersProps) => {
   return (
     <div className="flex w-full flex-wrap justify-around gap-4">
       {providers.map(provider => (
-        <button
-          key={provider.id}
-          onClick={() => handleClick(provider.callback)}
-          className="relative aspect-square overflow-hidden border-4 border-brutal-black bg-brutal-primary p-4 shadow-none shadow-transparent backdrop-blur-sm transition-all duration-500 hover:bg-brutal-secondary hover:shadow-neubrutalism hover:shadow-brutal-black"
-        >
-          <div className="relative h-12 w-12">
-            <Image
-              alt={'Log with ' + provider.id}
-              src={provider.src}
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
-        </button>
+        <HoverComponent key={provider.id}>
+          <button
+            onClick={() => handleClick(provider.callback)}
+            className="aspect-square overflow-hidden border-2 border-brutal-primary p-4 backdrop-blur-sm"
+          >
+            <div className="relative h-12 w-12">
+              <Image
+                alt={'Log with ' + provider.id}
+                src={provider.src}
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+          </button>
+        </HoverComponent>
       ))}
     </div>
   );

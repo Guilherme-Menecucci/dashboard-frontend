@@ -32,8 +32,8 @@ const Navigation = ({ children }: TDefaultLayoutProps) => {
   return (
     <div className="flex h-screen w-full flex-row overflow-hidden">
       <NavComponent />
-      <MainContainer>
-        <Row className="fixed inset-x-0 top-0 z-50 h-[6.2rem] items-center border-b-4 border-b-brutal-black bg-brutal-surface px-4 transition-[left] lg:left-28 group-[.nav-open]/layout:lg:left-1/3 2xl:left-auto 2xl:w-9/12 min-[1792px]:w-10/12">
+      <MainContainer className="bg-dotted">
+        <Row className="fixed inset-x-0 top-0 z-50 h-[6.2rem] items-center border-b-2 border-b-brutal-black bg-brutal-surface px-4 transition-[left] lg:left-28 group-[.nav-open]/layout:lg:left-1/3 2xl:left-auto 2xl:w-9/12 min-[1792px]:w-10/12">
           <Typography
             component="div"
             variant="heading"

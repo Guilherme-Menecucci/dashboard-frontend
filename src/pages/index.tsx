@@ -14,6 +14,7 @@ import Hero from '~@components/Hero';
 import HeroTile from '~@components/HeroTile';
 import Typography from '~@components/Typography';
 import withTMDBImage from '~@lib/HoC/withTMDBImage';
+import HoverComponent from '~@components/HoverComponent';
 
 const Dashboard: App.TNextPageWithLayout<IDashboardProps> = ({ movies }) => {
   const { nowPlaying } = movies;
@@ -39,7 +40,7 @@ const Dashboard: App.TNextPageWithLayout<IDashboardProps> = ({ movies }) => {
           ))}
         </Hero>
       ) : null}
-      <div className="h-20 bg-dotted" />
+      <div className="h-20" />
       {/* TODO: Componentization */}
       {/* <Row className="gap-4 p-4">
         {cardsData &&
@@ -86,7 +87,7 @@ const Dashboard: App.TNextPageWithLayout<IDashboardProps> = ({ movies }) => {
             );
           })}
       </Row> */}
-      <section className="bg-dotted">
+      <section>
         <Typography
           component="h2"
           variant="display"
@@ -96,16 +97,16 @@ const Dashboard: App.TNextPageWithLayout<IDashboardProps> = ({ movies }) => {
         >
           Movies
         </Typography>
-        {Object.entries(movies).map(([key, value]) => (
+        {Object.entries(movies).map(([key, value], i) => (
           <div
             key={key}
-            className="group relative w-full border-t-4 border-brutal-black pt-8 even:bg-brutal-primary"
+            className="group relative w-full border-t-2 border-brutal-black pt-8 even:bg-brutal-primary"
           >
             <Typography
               component="h3"
               variant="display"
               size="small"
-              className="ml-8 w-max px-4 capitalize tracking-widest text-brutal-on-primary group-odd:bg-brutal-background"
+              className="ml-8 w-max px-4 capitalize tracking-widest text-brutal-on-primary group-odd:bg-brutal-background group-odd:text-brutal-on-background"
             >
               {key.replace(/([A-Z])/g, ' $1').trim()}
             </Typography>
@@ -114,52 +115,54 @@ const Dashboard: App.TNextPageWithLayout<IDashboardProps> = ({ movies }) => {
                 ? value.map(movie => (
                     // TODO: Movie list - vertical on mobile
                     // TODO: Componentization
-                    <div
+                    <HoverComponent
                       key={movie.id}
-                      className="group/movie-card flex aspect-[20/7.55] h-full cursor-pointer border-2 border-brutal-black bg-brutal-surface text-brutal-on-surface transition-all hover:shadow-neubrutalism hover:shadow-brutal-black"
+                      className="group/movie-card aspect-[20/7.55] h-full"
+                      color="black"
                     >
-                      <div className="relative h-full w-2/3 border-r-4 border-brutal-black">
-                        <TMDBImage
-                          src={movie.backdrop_path}
-                          alt={movie.title}
-                          layout="fill"
-                          className="scale-100 transition-transform group-hover/movie-card:scale-150"
-                          placeholder="blur"
-                          blurDataURL={`https://image.tmdb.org/t/p/w92/${movie.backdrop_path}`}
-                        />
-                      </div>
-                      <div className="relative flex h-full w-1/3 flex-col overflow-hidden group-even:bg-dotted">
-                        <Typography
-                          component="h2"
-                          variant="title"
-                          size="large"
-                          className="h-[4.65rem] overflow-hidden bg-brutal-surface p-4 pb-2"
-                          style={{
-                            display: '-webkit-box',
-                            lineClamp: 2,
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            textOverflow: 'ellipsis',
-                          }}
-                        >
-                          {movie.title}
-                        </Typography>
-                        <div className="flex w-max items-center bg-brutal-surface p-4 pt-2 text-brutal-yellow">
-                          <Typography
-                            component="span"
-                            variant="title"
-                            size="large"
-                            className="text-shadow-neubrutalism-border"
-                          >
-                            {Math.round((movie.vote_average + Number.EPSILON) * 10) / 10}
-                          </Typography>
-                          <IoStar
-                            size="1rem"
-                            className="drop-shadow-neubrutalism-border ml-2 inline-block text-brutal-yellow"
+                      <div className="flex h-full cursor-pointer bg-brutal-surface text-brutal-on-surface">
+                        <div className="relative h-full w-2/3 border-r-2 border-brutal-black">
+                          <TMDBImage
+                            src={movie.backdrop_path}
+                            alt={movie.title}
+                            layout="fill"
+                            placeholder="blur"
+                            blurDataURL={`https://image.tmdb.org/t/p/w92/${movie.backdrop_path}`}
                           />
                         </div>
+                        <div className="relative flex h-full w-1/3 flex-col overflow-hidden group-even:bg-dotted">
+                          <Typography
+                            component="h2"
+                            variant="title"
+                            size="large"
+                            className="h-[4.65rem] overflow-hidden bg-brutal-surface p-4 pb-2"
+                            style={{
+                              display: '-webkit-box',
+                              lineClamp: 2,
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              textOverflow: 'ellipsis',
+                            }}
+                          >
+                            {movie.title}
+                          </Typography>
+                          <div className="flex w-max items-center bg-brutal-surface p-4 pt-2 text-brutal-yellow">
+                            <Typography
+                              component="span"
+                              variant="title"
+                              size="large"
+                              className="text-shadow-neubrutalism-border"
+                            >
+                              {Math.round((movie.vote_average + Number.EPSILON) * 10) / 10}
+                            </Typography>
+                            <IoStar
+                              size="1rem"
+                              className="drop-shadow-neubrutalism-border ml-2 inline-block text-brutal-yellow"
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    </HoverComponent>
                   ))
                 : 'No movies found'}
             </div>

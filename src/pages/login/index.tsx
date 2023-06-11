@@ -65,7 +65,7 @@ const SignIn: App.TNextPageWithLayout<ILoginProps> = ({ providers }) => {
           </Typography>
         </Link>
         <div className="relative my-4 flex justify-center overflow-hidden">
-          <div className="absolute top-3 right-0 left-2/3 block border-t-2 border-neutral-900/20" />
+          <div className="absolute top-3 left-0 right-3/4 block translate-x-1/2 border-t-2 border-brutal-primary-variant" />
           <Typography
             component="span"
             size="large"
@@ -74,7 +74,7 @@ const SignIn: App.TNextPageWithLayout<ILoginProps> = ({ providers }) => {
           >
             or
           </Typography>
-          <div className="absolute top-3 left-0 right-2/3 block border-t-2 border-neutral-900/20" />
+          <div className="absolute top-3 right-0 left-3/4 block -translate-x-1/2 border-t-2 border-brutal-primary-variant" />
         </div>
         <Providers providers={providers} />
       </div>

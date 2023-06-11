@@ -1,23 +1,15 @@
 import React from 'react';
-import clsx from 'clsx';
 
 import { TDefaultLayoutProps } from '~@types/layouts';
+import MainContainer from '~@components/MainComponent';
 
 const Login = ({ children }: TDefaultLayoutProps) => {
   return (
-    <div className="flex min-h-full w-full flex-col justify-between">
-      <div className="flex h-screen w-full items-center justify-center overflow-x-hidden bg-gradient-to-br from-brutal-primary/40 to-brutal-secondary/40 bg-repeat">
-        <div
-          className={clsx(
-            'relative z-10 h-full w-full overflow-y-auto overflow-x-hidden bg-brutal-surface px-10 py-8 text-brutal-on-surface transition-colors duration-500',
-            'sm:border-4 sm:border-brutal-black sm:shadow-neubrutalism sm:shadow-brutal-black',
-            'sm:h-fit sm:max-w-3xl',
-          )}
-        >
-          {children}
-        </div>
+    <MainContainer className="flex items-center justify-center bg-gradient-to-br from-brutal-primary/40 to-brutal-secondary/40">
+      <div className="h-full w-full border-0 border-brutal-black bg-brutal-background px-10 py-8 text-brutal-on-background sm:h-fit sm:max-w-3xl sm:border-2">
+        {children}
       </div>
-    </div>
+    </MainContainer>
   );
 };
 

@@ -77,19 +77,18 @@ module.exports = {
         square: '#1b1b1b',
       },
       backgroundImage: {
-        dotted:
-          'radial-gradient(rgb(63 238 154 / 50%) 25%, transparent 25%), radial-gradient(rgb(63 238 154 / 50%) 25%, transparent 25%)',
+        dotted: 'radial-gradient(rgb(63 238 154 / 25%) 13%, transparent 13%)',
         square:
           "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cg fill='%23c1fd2c' fill-opacity='1'%3E%3Cpath fill-rule='evenodd' d='M0 0h6v6H0V0zm6 6h6v6H6V6z'/%3E%3C/g%3E%3C/svg%3E\")",
         // dotted: 'radial-gradient(rgb(193 253 44 / 100%) 0.1rem, transparent 0.1rem)',
         test: "url('https://external-preview.redd.it/4MddL-315mp40uH18BgGL2-5b6NIPHcDMBSWuN11ynM.jpg?width=960&crop=smart&auto=webp&s=b98d54a43b3dac555df398588a2c791e0f3076d9')",
       },
       backgroundSize: {
-        dotted: '15px 15px',
+        dotted: '1vw 2vh',
         // square: '15px 15px',
       },
       backgroundPosition: {
-        dotted: '0 0, 7.5px 7.5px',
+        dotted: '0 0, 1vw 2vh',
         // square: '0 0, 5px 5px',
       },
       boxShadow: {

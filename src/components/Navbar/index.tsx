@@ -29,7 +29,7 @@ const NavComponent: React.FunctionComponent = () => {
 
   return (
     <>
-      <div className="hidden h-full w-2/12 overflow-x-hidden border-r-4 border-brutal-black bg-brutal-surface p-4 transition-[width] lg:flex lg:w-28 lg:flex-col group-[.nav-open]/layout:lg:w-4/12 2xl:w-3/12 min-[1792px]:w-2/12">
+      <div className="hidden h-full w-2/12 overflow-x-hidden border-r-2 border-brutal-black bg-brutal-surface p-4 transition-[width] lg:flex lg:w-28 lg:flex-col group-[.nav-open]/layout:lg:w-4/12 2xl:w-3/12 min-[1792px]:w-2/12">
         <div className="mx-auto flex h-full w-full flex-col sm:w-[4.5rem] group-[.nav-open]/layout:sm:w-full 2xl:w-full">
           <Typography
             component="div"
@@ -43,7 +43,7 @@ const NavComponent: React.FunctionComponent = () => {
             <span className="sm:block group-[.nav-open]/layout:sm:hidden 2xl:hidden">D</span>
           </Typography>
           <nav className="mt-5 flex h-full w-full flex-col items-stretch gap-2">
-            <div className="border-t-4 border-brutal-black" />
+            <div className="border-t-2 border-brutal-black" />
             {session && (
               <>
                 <ul>
@@ -65,11 +65,11 @@ const NavComponent: React.FunctionComponent = () => {
                     </div>
                   </NavItem>
                 </ul>
-                <div className="border-t-4 border-brutal-black" />
+                <div className="border-t-2 border-brutal-black" />
               </>
             )}
             <ul>{renderNavs}</ul>
-            <div className="mt-auto border-t-4 border-brutal-black" />
+            <div className="mt-auto border-t-2 border-brutal-black" />
             <ul>
               <NavIconItem
                 Icon={IoLogOutOutline}
@@ -82,7 +82,7 @@ const NavComponent: React.FunctionComponent = () => {
           </nav>
         </div>
       </div>
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t-4 border-brutal-black bg-brutal-surface pt-2 pb-4 lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t-2 border-brutal-black bg-brutal-surface pt-2 pb-4 lg:hidden">
         <nav className="flex w-full flex-col gap-6">
           <ul className="flex justify-around">{renderNavs}</ul>
         </nav>

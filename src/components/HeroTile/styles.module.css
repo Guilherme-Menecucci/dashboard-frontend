@@ -20,7 +20,7 @@
 }
 
 .HeroTile-poster {
-  @apply relative aspect-[3/5] w-2/3 max-w-xs border-4 shadow-neubrutalismBig sm:w-full;
+  @apply relative aspect-[3/5] w-2/3 max-w-xs border-2 shadow-neubrutalismBig sm:w-full;
 }
 
 /* #region Primary */

@@ -1,14 +1,30 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const colors = require('tailwindcss/colors');
 const defaultTheme = require('tailwindcss/defaultTheme');
+
+const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    'app/**/*.{js,ts,jsx,tsx}',
+    'lib/**/*.{js,ts,jsx,tsx}',
+    'components/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     extend: {
+      minHeight: {
+        screen: '100dvh',
+        nav: 'var(--nav-size)',
+        'nav-screen': 'calc(100dvh - var(--nav-size))',
+      },
       height: {
         screen: '100dvh',
+        nav: 'var(--nav-size)',
+        'nav-screen': 'calc(100dvh - var(--nav-size))',
+      },
+      padding: {
+        nav: 'var(--nav-size)',
       },
       fontFamily: {
         sans: ['Kanit', ...defaultTheme.fontFamily.sans],
@@ -47,19 +63,26 @@ module.exports = {
         'brutal-acid': '#c1fd2c',
 
         /* Theme Pallete */
-        'brutal-primary': '#3fee9a',
-        'brutal-primary-variant': '#00df6b',
-        'brutal-on-primary': '#1b1b1b',
+        // 'brutal-primary': '#3fee9a',
+        // 'brutal-primary': '#3fee41',
+        'brutal-primary': '#328736', // 90ee90 00df6b 328736
+        'brutal-primary-variant': '#90ee90',
+        'brutal-on-primary': '#f0f0f0',
 
-        'brutal-secondary': '#ee3f94',
+        // 'brutal-secondary': '#ee3f94',
+        // 'brutal-secondary': '#ee3fec',
+        'brutal-secondary': '#721e68', // dd107a 796683
         'brutal-secondary-variant': '#dd107a',
         'brutal-on-secondary': '#ffffff',
 
-        'brutal-background': '#ffffff',
-        'brutal-on-background': '#000000',
+        // 'brutal-background': '#ffffff',
+        // 'brutal-background': '#010700',
+        'brutal-background': '#030b07', // 030b07 1e4f4a 1f2823
+        'brutal-on-background': '#fcdfff',
 
-        'brutal-surface': '#e3fcee',
-        'brutal-on-surface': '#000000',
+        // 'brutal-surface': '#e3fcee',
+        'brutal-surface': '#020202',
+        'brutal-on-surface': '#b0b0b0',
 
         'brutal-info': '#38dbff',
         'brutal-on-info': '#ffffff',
@@ -161,5 +184,13 @@ module.exports = {
     //   variants: ['after', 'before', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
     // },
   ],
-  plugins: [],
+  plugins: [
+    plugin(function ({ addVariant, e }) {
+      addVariant('webkitScrollbar', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`webkitScrollbar${separator}${className}`)}::-webkit-scrollbar`;
+        });
+      });
+    }),
+  ],
 };

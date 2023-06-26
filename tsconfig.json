@@ -20,23 +20,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "~@data/*": ["data/*"],
-      "~@env/*": ["env/*"],
-      "~@pages/*": ["pages/*"],
-      "~@server/*": ["server/*"],
-      "~@styles/*": ["styles/*"],
       "~@components/*": ["components/*"],
-      "~@containers/*": ["containers/*"],
-      "~@layouts/*": ["layouts/*"],
-      "~@layouts": ["layouts/index"],
-      "~@types/*": ["types/*"],
       "~@lib/*": ["lib/*"],
-      "~@utils/*": ["utils/*"]
-    }
+      "~@data/*": ["lib/data/*"],
+      "~@env/*": ["lib/env/*"],
+      "~@types/*": ["lib/types/*"],
+      "~@utils/*": ["lib/utils/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
 }

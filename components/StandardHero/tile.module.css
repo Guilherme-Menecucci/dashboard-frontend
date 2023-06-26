@@ -1,0 +1,132 @@
+.HeroTile-primary div,
+.HeroTile-primary-variant div,
+.HeroTile-secondary div,
+.HeroTile-secondary-variant div {
+  @apply after:bg-brutal-black/75;
+}
+
+.HeroTile-primary h2,
+.HeroTile-primary-variant h2,
+.HeroTile-secondary h2,
+.HeroTile-secondary-variant h2 {
+  @apply text-brutal-white;
+}
+
+.HeroTile-primary > div + div > h2,
+.HeroTile-primary-variant > div + div > h2,
+.HeroTile-secondary > div + div > h2,
+.HeroTile-secondary-variant > div + div > h2 {
+  @apply text-brutal-white;
+}
+/*
+.HeroTile-poster {
+  @apply relative aspect-[3/5] w-2/3 max-w-xs border-2 shadow-neubrutalismBig sm:w-full;
+} */
+
+/* #region Primary */
+.HeroTile-primary {
+  @apply text-brutal-primary;
+}
+
+.HeroTile-primary div.not-background {
+  @apply after:bg-brutal-primary;
+}
+
+.HeroTile-primary .HeroTile-poster > :nth-child(1) {
+  @apply border-r-brutal-primary;
+}
+
+.HeroTile-primary .HeroTile-poster > :nth-child(2),
+.HeroTile-primary .HeroTile-poster > :nth-child(3) {
+  @apply bg-brutal-primary;
+}
+
+.HeroTile-primary .HeroTile-poster > :nth-child(4) {
+  @apply border-t-brutal-primary;
+}
+
+.HeroTile-primary .HeroTile-poster > :nth-child(5) {
+  @apply border-brutal-primary;
+}
+/* #endregion */
+
+/* #region Primary-Variant */
+.HeroTile-primary-variant {
+  @apply text-brutal-primary-variant;
+}
+
+.HeroTile-primary-variant div.not-background {
+  @apply after:bg-brutal-primary-variant;
+}
+
+.HeroTile-primary-variant .HeroTile-poster > :nth-child(1) {
+  @apply border-r-brutal-primary-variant;
+}
+
+.HeroTile-primary-variant .HeroTile-poster > :nth-child(2),
+.HeroTile-primary-variant .HeroTile-poster > :nth-child(3) {
+  @apply bg-brutal-primary-variant;
+}
+
+.HeroTile-primary-variant .HeroTile-poster > :nth-child(4) {
+  @apply border-t-brutal-primary-variant;
+}
+
+.HeroTile-primary-variant .HeroTile-poster > :nth-child(5) {
+  @apply border-brutal-primary-variant;
+}
+/* #endregion */
+
+/* #region Secondary */
+.HeroTile-secondary {
+  @apply text-brutal-secondary;
+}
+
+.HeroTile-secondary div.not-background {
+  @apply after:bg-brutal-secondary;
+}
+
+.HeroTile-secondary .HeroTile-poster > :nth-child(1) {
+  @apply border-r-brutal-secondary;
+}
+
+.HeroTile-secondary .HeroTile-poster > :nth-child(2),
+.HeroTile-secondary .HeroTile-poster > :nth-child(3) {
+  @apply bg-brutal-secondary;
+}
+
+.HeroTile-secondary .HeroTile-poster > :nth-child(4) {
+  @apply border-t-brutal-secondary;
+}
+
+.HeroTile-secondary .HeroTile-poster > :nth-child(5) {
+  @apply border-brutal-secondary;
+}
+/* #endregion */
+
+/* #region Secondary-Variant */
+.HeroTile-secondary-variant {
+  @apply text-brutal-secondary-variant;
+}
+
+.HeroTile-secondary-variant div.not-background {
+  @apply after:bg-brutal-secondary-variant;
+}
+
+.HeroTile-secondary-variant .HeroTile-poster > :nth-child(1) {
+  @apply border-r-brutal-secondary-variant;
+}
+
+.HeroTile-secondary-variant .HeroTile-poster > :nth-child(2),
+.HeroTile-secondary-variant .HeroTile-poster > :nth-child(3) {
+  @apply bg-brutal-secondary-variant;
+}
+
+.HeroTile-secondary-variant .HeroTile-poster > :nth-child(4) {
+  @apply border-t-brutal-secondary-variant;
+}
+
+.HeroTile-secondary-variant .HeroTile-poster > :nth-child(5) {
+  @apply border-brutal-secondary-variant;
+}
+/* #endregion */

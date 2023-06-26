@@ -1,0 +1,86 @@
+/* #region Text */
+.textField-input-primary {
+  @apply border-brutal-black bg-brutal-primary text-brutal-black;
+  @apply disabled:border-brutal-primary/40 disabled:bg-brutal-primary/40 disabled:text-brutal-black/40;
+}
+
+.textField-input-secondary {
+  @apply border-brutal-secondary bg-brutal-secondary text-brutal-black;
+  @apply disabled:border-brutal-secondary/40 disabled:bg-brutal-secondary/40 disabled:text-brutal-black/40;
+}
+
+.textField-input-error {
+  @apply border-brutal-red bg-brutal-red text-brutal-black;
+  @apply disabled:border-brutal-red/40 disabled:bg-brutal-red/40 disabled:text-brutal-black/40;
+}
+
+.textField-input-warning {
+  @apply border-brutal-orange bg-brutal-orange text-brutal-black;
+  @apply disabled:border-brutal-orange/40 disabled:bg-brutal-orange/40 disabled:text-brutal-black/40;
+}
+
+.textField-input-info {
+  @apply border-brutal-blue bg-brutal-blue text-brutal-black;
+  @apply disabled:border-brutal-blue/40 disabled:bg-brutal-blue/40 disabled:text-brutal-black/40;
+}
+
+.textField-input-success {
+  @apply border-brutal-lime-green bg-brutal-lime-green text-brutal-black;
+  @apply disabled:border-brutal-lime-green/40 disabled:bg-brutal-lime-green/40 disabled:text-brutal-black/40;
+}
+
+/* #endregion */
+
+/* #region Needed? */
+/* #region Variant */
+.textField-variant input {
+  @apply h-px rounded-t-xl border-0;
+}
+
+.textField-variant + .textField-variant {
+  @apply mt-8;
+}
+
+.textField-variant:focus-within input,
+.textField-variant.valid input {
+  @apply h-5/6;
+}
+
+.textField-variant:focus-within span,
+.textField-variant.valid span {
+  @apply -top-2 left-0 text-xs;
+}
+
+.textField-variant button {
+  @apply absolute top-1/2 right-1 z-10 -translate-y-1/3 rounded-full p-1 text-2xl;
+}
+/* #endregion */
+
+/* #region Outline */
+.textField-outlined {
+  @apply bg-inherit;
+}
+
+.textField-outlined + .textField-outlined {
+  @apply mt-4;
+}
+
+.textField-outlined input {
+  @apply h-full rounded-none border-2 bg-inherit;
+}
+
+.textField-outlined:focus-within span,
+.textField-outlined.valid span {
+  @apply absolute top-0 left-5 bg-inherit px-2 text-xs;
+}
+
+.textField-outlined button {
+  right: 2px;
+  height: calc(100% - 4px);
+  @apply rounded-none bg-brutal-black p-2 text-brutal-white;
+}
+/* #endregion */
+
+/* #region Container */
+/* #endregion */
+/* #endregion */

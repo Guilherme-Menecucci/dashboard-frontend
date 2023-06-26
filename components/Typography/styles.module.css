@@ -1,0 +1,25 @@
+@tailwind components;
+
+.heading-primary {
+  @apply text-primary-400;
+}
+
+.heading-secondary {
+  @apply text-secondary-400;
+}
+
+.heading-error {
+  @apply text-error-400;
+}
+
+.heading-warning {
+  @apply text-warning-400;
+}
+
+.heading-info {
+  @apply text-info-400;
+}
+
+.heading-success {
+  @apply text-success-400;
+}

@@ -1,0 +1,241 @@
+@tailwind components;
+
+/* #region Text */
+.btn-text-primary {
+  /* Light Theme */
+  @apply text-primary-400;
+  @apply hover:bg-black/10 hover:text-primary-500;
+  @apply disabled:bg-primary-700/40 disabled:text-white/40;
+
+  /* Dark Theme */
+  /* @apply dark:text-primary-200;
+  @apply dark:hover:bg-white/10 dark:hover:text-primary-400;
+  @apply disabled:dark:bg-transparent disabled:dark:text-primary-200/40; */
+}
+
+.btn-text-secondary {
+  /* Light Theme */
+  @apply text-secondary-400;
+  @apply hover:bg-black/10 hover:text-secondary-500;
+  @apply disabled:bg-secondary-700/40 disabled:text-white/40;
+
+  /* Dark Theme */
+  /* @apply dark:text-secondary-200;
+  @apply dark:hover:bg-white/10 dark:hover:text-secondary-400;
+  @apply disabled:dark:bg-transparent disabled:dark:text-secondary-200/40; */
+}
+
+.btn-text-error {
+  /* Light Theme */
+  @apply text-error-400;
+  @apply hover:bg-black/10 hover:text-error-500;
+  @apply disabled:bg-error-700/40 disabled:text-white/40;
+
+  /* Dark Theme */
+  /* @apply dark:text-error-200;
+  @apply dark:hover:bg-white/10 dark:hover:text-error-400;
+  @apply disabled:dark:bg-transparent disabled:dark:text-error-200/40; */
+}
+
+.btn-text-warning {
+  /* Light Theme */
+  @apply text-warning-400;
+  @apply hover:bg-black/10 hover:text-warning-500;
+  @apply disabled:bg-warning-700/40 disabled:text-white/40;
+
+  /* Dark Theme */
+  /* @apply dark:text-warning-200;
+  @apply dark:hover:bg-white/10 dark:hover:text-warning-400;
+  @apply disabled:dark:bg-transparent disabled:dark:text-warning-200/40; */
+}
+
+.btn-text-info {
+  /* Light Theme */
+  @apply text-info-400;
+  @apply hover:bg-black/10 hover:text-info-500;
+  @apply disabled:bg-info-700/40 disabled:text-white/40;
+
+  /* Dark Theme */
+  /* @apply dark:text-info-200;
+  @apply dark:hover:bg-white/10 dark:hover:text-info-400;
+  @apply disabled:dark:bg-transparent disabled:dark:text-info-200/40; */
+}
+
+.btn-text-success {
+  /* Light Theme */
+  @apply text-success-400;
+  @apply hover:bg-black/10 hover:text-success-500;
+  @apply disabled:bg-success-700/40 disabled:text-white/40;
+
+  /* Dark Theme */
+  /* @apply dark:text-success-200;
+  @apply dark:hover:bg-white/10 dark:hover:text-success-400;
+  @apply disabled:dark:bg-transparent disabled:dark:text-success-200/40; */
+}
+/* #endregion */
+
+/* #region Outlined */
+.btn-outlined-primary {
+  @apply border-2;
+
+  /* Light Theme */
+  @apply border-primary-400 text-primary-400;
+  @apply hover:border-primary-500 hover:bg-black/10 hover:text-primary-500;
+  @apply disabled:border-primary-400/40 disabled:bg-transparent disabled:text-primary-400/40;
+  /* @apply disabled:border-primary-700 disabled:bg-zinc-600/20 disabled:text-primary-700; */
+
+  /* Dark Theme */
+  /* @apply dark:border-primary-200 dark:text-primary-200;
+  @apply dark:hover:border-primary-400 dark:hover:bg-white/10 dark:hover:text-primary-400;
+  @apply disabled:dark:border-primary-200/40 disabled:dark:bg-transparent disabled:dark:text-primary-200/40; */
+}
+
+.btn-outlined-secondary {
+  @apply border-2;
+
+  /* Light Theme */
+  @apply border-secondary-400 text-secondary-400;
+  @apply hover:border-secondary-500 hover:bg-black/10 hover:text-secondary-500;
+  @apply disabled:border-secondary-400/40 disabled:bg-transparent disabled:text-secondary-400/40;
+  /* @apply disabled:border-secondary-700 disabled:bg-zinc-600/20 disabled:text-secondary-700; */
+
+  /* Dark Theme */
+  /* @apply dark:border-secondary-200 dark:text-secondary-200;
+  @apply dark:hover:border-secondary-400 dark:hover:bg-white/10 dark:hover:text-secondary-400;
+  @apply disabled:dark:border-secondary-200/40 disabled:dark:bg-transparent disabled:dark:text-secondary-200/40; */
+}
+
+.btn-outlined-error {
+  @apply border-2;
+
+  /* Light Theme */
+  @apply border-error-400 text-error-400;
+  @apply hover:border-error-500 hover:bg-black/10 hover:text-error-500;
+  @apply disabled:border-error-400/40 disabled:bg-transparent disabled:text-error-400/40;
+  /* @apply disabled:border-error-700 disabled:bg-zinc-600/20 disabled:text-error-700; */
+
+  /* Dark Theme */
+  /* @apply dark:border-error-200 dark:text-error-200;
+  @apply dark:hover:border-error-400 dark:hover:bg-white/10 dark:hover:text-error-400;
+  @apply disabled:dark:border-error-200/40 disabled:dark:bg-transparent disabled:dark:text-error-200/40; */
+}
+
+.btn-outlined-warning {
+  @apply border-2;
+
+  /* Light Theme */
+  @apply border-warning-400 text-warning-400;
+  @apply hover:border-warning-500 hover:bg-black/10 hover:text-warning-500;
+  @apply disabled:border-warning-400/40 disabled:bg-transparent disabled:text-warning-400/40;
+  /* @apply disabled:border-warning-700 disabled:bg-zinc-600/20 disabled:text-warning-700; */
+
+  /* Dark Theme */
+  /* @apply dark:border-warning-200 dark:text-warning-200;
+  @apply dark:hover:border-warning-400 dark:hover:bg-white/10 dark:hover:text-warning-400;
+  @apply disabled:dark:border-warning-200/40 disabled:dark:bg-transparent disabled:dark:text-warning-200/40; */
+}
+
+.btn-outlined-info {
+  @apply border-2;
+
+  /* Light Theme */
+  @apply border-info-400 text-info-400;
+  @apply hover:border-info-500 hover:bg-black/10 hover:text-info-500;
+  @apply disabled:border-info-400/40 disabled:bg-transparent disabled:text-info-400/40;
+  /* @apply disabled:border-info-700 disabled:bg-zinc-600/20 disabled:text-info-700; */
+
+  /* Dark Theme */
+  /* @apply dark:border-info-200 dark:text-info-200;
+  @apply dark:hover:border-info-400 dark:hover:bg-white/10 dark:hover:text-info-400;
+  @apply disabled:dark:border-info-200/40 disabled:dark:bg-transparent disabled:dark:text-info-200/40; */
+}
+
+.btn-outlined-success {
+  @apply border-2;
+
+  /* Light Theme */
+  @apply border-success-400 text-success-400;
+  @apply hover:border-success-500 hover:bg-black/10 hover:text-success-500;
+  @apply disabled:border-success-400/40 disabled:bg-transparent disabled:text-success-400/40;
+  /* @apply disabled:border-success-700 disabled:bg-zinc-600/20 disabled:text-success-700; */
+
+  /* Dark Theme */
+  /* @apply dark:border-success-200 dark:text-success-200;
+  @apply dark:hover:border-success-400 dark:hover:bg-white/10 dark:hover:text-success-400;
+  @apply disabled:dark:border-success-200/40 disabled:dark:bg-transparent disabled:dark:text-success-200/40; */
+}
+/* #endregion */
+
+/* #region Container */
+.btn-contained-primary {
+  /* Light Theme */
+  @apply bg-primary-400 text-white;
+  @apply hover:bg-primary-500 focus:bg-primary-500;
+  @apply disabled:bg-primary-400/40 disabled:text-black/40;
+
+  /* Dark Theme */
+  /* @apply dark:bg-primary-200 dark:text-black;
+  @apply dark:hover:bg-primary-400 dark:focus:bg-primary-400;
+  @apply disabled:dark:bg-primary-100/40 disabled:dark:text-white/40; */
+}
+
+.btn-contained-secondary {
+  /* Light Theme */
+  @apply bg-secondary-400 text-white;
+  @apply hover:bg-secondary-500 focus:bg-secondary-500;
+  @apply disabled:bg-secondary-400/40 disabled:text-black/40;
+
+  /* Dark Theme */
+  /* @apply dark:bg-secondary-200 dark:text-black;
+  @apply dark:hover:bg-secondary-400 dark:focus:bg-secondary-400;
+  @apply disabled:dark:bg-secondary-100/40 disabled:dark:text-white/40; */
+}
+
+.btn-contained-error {
+  /* Light Theme */
+  @apply bg-error-400 text-white;
+  @apply hover:bg-error-500 focus:bg-error-500;
+  @apply disabled:bg-error-400/40 disabled:text-black/40;
+
+  /* Dark Theme */
+  /* @apply dark:bg-error-200 dark:text-black;
+  @apply dark:hover:bg-error-400 dark:focus:bg-error-400;
+  @apply disabled:dark:bg-error-100/40 disabled:dark:text-white/40; */
+}
+
+.btn-contained-warning {
+  /* Light Theme */
+  @apply bg-warning-400 text-white;
+  @apply hover:bg-warning-500 focus:bg-warning-500;
+  @apply disabled:bg-warning-400/40 disabled:text-black/40;
+
+  /* Dark Theme */
+  /* @apply dark:bg-warning-200 dark:text-black;
+  @apply dark:hover:bg-warning-400 dark:focus:bg-warning-400;
+  @apply disabled:dark:bg-warning-100/40 disabled:dark:text-white/40; */
+}
+
+.btn-contained-info {
+  /* Light Theme */
+  @apply bg-info-400 text-white;
+  @apply hover:bg-info-500 focus:bg-info-500;
+  @apply disabled:bg-info-400/40 disabled:text-black/40;
+
+  /* Dark Theme */
+  /* @apply dark:bg-info-200 dark:text-black;
+  @apply dark:hover:bg-info-400 dark:focus:bg-info-400;
+  @apply disabled:dark:bg-info-100/40 disabled:dark:text-white/40; */
+}
+
+.btn-contained-success {
+  /* Light Theme */
+  @apply bg-success-400 text-white;
+  @apply hover:bg-success-500 focus:bg-success-500;
+  @apply disabled:bg-success-400/40 disabled:text-black/40;
+
+  /* Dark Theme */
+  /* @apply dark:bg-success-200 dark:text-black;
+  @apply dark:hover:bg-success-400 dark:focus:bg-success-400;
+  @apply disabled:dark:bg-success-100/40 disabled:dark:text-white/40; */
+}
+/* #endregion */

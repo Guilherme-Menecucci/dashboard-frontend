@@ -44,7 +44,7 @@ const HoverComponent = ({
       />
       <div
         className={clsx(
-          'absolute bottom-0 -right-2 h-0 w-0 origin-[center_bottom_0px] scale-0 border-x-[0.5rem] border-t-[0.5rem] border-transparent transition-transform duration-100',
+          'absolute -right-2 bottom-0 h-0 w-0 origin-[center_bottom_0px] scale-0 border-x-[0.5rem] border-t-[0.5rem] border-transparent transition-transform duration-100',
           active ? 'scale-100' : 'group-hover/hover:scale-100 group-hover/hover:duration-75',
         )}
       />
@@ -52,8 +52,8 @@ const HoverComponent = ({
         className={clsx(
           'h-full w-full border-2 transition-[border,transform] duration-100 group-hover/hover:duration-75',
           active
-            ? 'translate-x-2 -translate-y-2'
-            : 'group-hover/hover:translate-x-2 group-hover/hover:-translate-y-2',
+            ? '-translate-y-2 translate-x-2'
+            : 'group-hover/hover:-translate-y-2 group-hover/hover:translate-x-2',
         )}
       >
         {children}

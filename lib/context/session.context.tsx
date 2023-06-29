@@ -1,3 +1,4 @@
+'use client';
 import React, { createContext, useContext, useCallback } from 'react';
 import { useCookies } from 'react-cookie';
 import { Api } from '~@types/_api';
@@ -18,6 +19,7 @@ const SessionProvider = ({ children }: TSessionProviderProps) => {
 
   const saveSession = useCallback(
     (data: Api.TSessionApi) => {
+      console.log('saveSession');
       setCookie('authToken', data.session.authToken, {
         domain: process.env.COOKIE_DOMAIN,
         secure: process.env.NODE_ENV !== 'development',

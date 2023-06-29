@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { ImageLoader, ImageProps } from 'next/image';
+import Image, { ImageLoader, ImageProps } from 'next/image';
 
 function withTMDBImage<T extends ImageProps>(WrappedComponent: React.ComponentType<T>) {
   const imageLoader: ImageLoader = ({ src }) => {
@@ -14,4 +14,7 @@ function withTMDBImage<T extends ImageProps>(WrappedComponent: React.ComponentTy
   return TMDBImage;
 }
 
+const TMDBImage = withTMDBImage(Image);
+
 export default withTMDBImage;
+export { TMDBImage };

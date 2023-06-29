@@ -13,33 +13,30 @@ export enum BASECOMPONENTS_INHERIT {
   SUPER_CAROUSEL = 'SuperCarousel',
 }
 
-interface BaseComponentStandardHeroProps {
+export interface BaseComponentStandardHeroProps {
   component: BASECOMPONENTS_INHERIT.STANDARD_HERO;
-  containers: {
-    entities: HeroProps;
-  };
+  containers: HeroProps;
 }
 
-interface BaseComponentStandardCarouselProps {
+export interface BaseComponentStandardCarouselProps {
   component: BASECOMPONENTS_INHERIT.STANDARD_CAROUSEL;
   containers: {
     title: string;
-    entities: StandardCarouselProps;
-  };
+  } & StandardCarouselProps;
 }
 
-interface BaseComponentSuperCarouselProps {
+export interface BaseComponentSuperCarouselProps {
   component: BASECOMPONENTS_INHERIT.SUPER_CAROUSEL;
   containers: {
     title: string;
-    entities: SuperCarouselProps;
-  };
+  } & SuperCarouselProps;
 }
 
-type BaseComponentProps =
+export type BaseComponentProps = { id?: string } & (
   | BaseComponentStandardHeroProps
   | BaseComponentStandardCarouselProps
-  | BaseComponentSuperCarouselProps;
+  | BaseComponentSuperCarouselProps
+);
 
 export default function BaseComponent({ component, containers }: BaseComponentProps) {
   switch (component) {

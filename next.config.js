@@ -23,6 +23,10 @@ const nextConfig = {
         hostname: 'image.tmdb.org',
       },
       {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
         protocol: 'https',
         hostname: 'image.menecucci.dev',
       },

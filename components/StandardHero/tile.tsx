@@ -70,7 +70,7 @@ export default function Tile({
         {poster && (
           <div
             className={clsx(
-              'relative aspect-[3/5] w-2/3 max-w-xs sm:w-full',
+              'relative aspect-[2/3] w-2/3 max-w-xs sm:w-full',
               styles['HeroTile-poster'],
             )}
           >

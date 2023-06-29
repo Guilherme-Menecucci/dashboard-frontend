@@ -107,6 +107,39 @@ const ControlledForm: React.FC<ControlledFormProps> = ({
     dispatch({ type: 'VALIDATE_FORM', payload: requiredFields });
   }, [requiredFields, state.data]);
 
+  const handleChange = useCallback(
+    (name: string) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      event.preventDefault();
+
+      const { value } = event.target;
+      dispatch({
+        type: 'UPDATE_FIELD',
+        payload: { name, value },
+      });
+    },
+    [],
+  );
+
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      // Some field its empty (Should verify if its a optional field)
+      if (!state.isValid) return;
+
+      // The custom validation doent was accepted
+      if (onValidate && !onValidate(state.data)) return;
+
+      // Every thing fine
+      onSubmit(state.data);
+    },
+    [onSubmit, onValidate, state.data, state.isValid],
+  );
+
+  const handleReset = useCallback(() => {
+    dispatch({ type: 'RESET_FORM' });
+  }, []);
+
   const renderFields = useCallback(
     () =>
       fields.map(field => {
@@ -151,36 +184,8 @@ const ControlledForm: React.FC<ControlledFormProps> = ({
           />
         );
       }),
-    [fields],
+    [fields, handleChange],
   );
-
-  const handleChange =
-    (name: string) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      event.preventDefault();
-
-      const { value } = event.target;
-      dispatch({
-        type: 'UPDATE_FIELD',
-        payload: { name, value },
-      });
-    };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    // Some field its empty (Should verify if its a optional field)
-    if (!state.isValid) return;
-
-    // The custom validation doent was accepted
-    if (onValidate && !onValidate(state.data)) return;
-
-    // Every thing fine
-    onSubmit(state.data);
-  };
-
-  const handleReset = () => {
-    dispatch({ type: 'RESET_FORM' });
-  };
 
   return (
     <form className="bg-inherit py-4" onSubmit={handleSubmit} onReset={handleReset}>

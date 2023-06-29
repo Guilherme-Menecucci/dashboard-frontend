@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
-import React, { useId } from 'react';
+import React from 'react';
 import { promiseSettled } from '~@types/lib/utils/promiseSettled';
 
 import { TMDbApi } from '~@utils/api/tmdb';
 
-import BaseComponent, { BASECOMPONENTS_INHERIT } from '~@components/BaseComponent';
+import BaseComponent, {
+  BASECOMPONENTS_INHERIT,
+  BaseComponentProps,
+} from '~@components/BaseComponent';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -29,34 +32,52 @@ const getMovies = async () => {
       .then(data => data.data.results),
   });
 
-  const entries = Object.entries(moviesResult).map(([title, movieList], index) => {
-    if (title === 'nowPlaying') {
-      return {
-        id: BASECOMPONENTS_INHERIT.STANDARD_HERO + '-' + title + '-' + index,
-        component: BASECOMPONENTS_INHERIT.STANDARD_HERO,
-        containers: {
-          entities: movieList.map((movie, index) => ({
-            id: movie.id,
-            index: index,
-            title: movie.title,
-            description: movie.overview,
-            poster: movie.poster_path,
-            backdrop: movie.backdrop_path,
-          })),
-        },
-      };
-    }
+  const entries = Object.entries(moviesResult).map<BaseComponentProps>(
+    ([title, movieList], index) => {
+      if (title === 'nowPlaying') {
+        return {
+          id: BASECOMPONENTS_INHERIT.STANDARD_HERO + '-' + title + '-' + index,
+          component: BASECOMPONENTS_INHERIT.STANDARD_HERO,
+          containers: {
+            entities: movieList.map((movie, index) => ({
+              id: movie.id,
+              index: index,
+              title: movie.title,
+              description: movie.overview,
+              poster: movie.poster_path,
+              backdrop: movie.backdrop_path,
+            })),
+          },
+        };
+      }
 
-    if (title === 'trending') {
+      if (title === 'trending') {
+        return {
+          id: BASECOMPONENTS_INHERIT.SUPER_CAROUSEL + '-' + title + '-' + index,
+          component: BASECOMPONENTS_INHERIT.SUPER_CAROUSEL,
+          containers: {
+            title,
+            entities: movieList.map((movie, index) => ({
+              index: index,
+              id: movie.id,
+              poster_path: movie.poster_path,
+              backdrop_path: movie.backdrop_path,
+              title: movie.title,
+              stars: Math.round((movie.vote_average + Number.EPSILON) * 10) / 10,
+              overview: movie.overview,
+            })),
+          },
+        };
+      }
+
       return {
-        id: BASECOMPONENTS_INHERIT.SUPER_CAROUSEL + '-' + title + '-' + index,
-        component: BASECOMPONENTS_INHERIT.SUPER_CAROUSEL,
+        id: BASECOMPONENTS_INHERIT.STANDARD_CAROUSEL + '-' + title + '-' + index,
+        component: BASECOMPONENTS_INHERIT.STANDARD_CAROUSEL,
         containers: {
           title,
           entities: movieList.map((movie, index) => ({
             index: index,
             id: movie.id,
-            poster_path: movie.poster_path,
             backdrop_path: movie.backdrop_path,
             title: movie.title,
             stars: Math.round((movie.vote_average + Number.EPSILON) * 10) / 10,
@@ -64,24 +85,8 @@ const getMovies = async () => {
           })),
         },
       };
-    }
-
-    return {
-      id: BASECOMPONENTS_INHERIT.STANDARD_CAROUSEL + '-' + title + '-' + index,
-      component: BASECOMPONENTS_INHERIT.STANDARD_CAROUSEL,
-      containers: {
-        title,
-        entities: movieList.map((movie, index) => ({
-          index: index,
-          id: movie.id,
-          backdrop_path: movie.backdrop_path,
-          title: movie.title,
-          stars: Math.round((movie.vote_average + Number.EPSILON) * 10) / 10,
-          overview: movie.overview,
-        })),
-      },
-    };
-  });
+    },
+  );
 
   return entries;
 };

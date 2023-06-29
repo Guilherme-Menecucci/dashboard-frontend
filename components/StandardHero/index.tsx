@@ -115,7 +115,7 @@ export default function StandardHero({ hasNav = true, entities }: HeroProps) {
               )}
               style={{ animationDuration: `${DELAY_HERO_ANIMATION}ms` }}
             >
-              {slides.map((slide, index) =>
+              {slides.map(slide =>
                 React.createElement(Tile, {
                   ...slide,
                   key: slide.title,

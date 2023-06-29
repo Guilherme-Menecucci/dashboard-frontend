@@ -5,8 +5,66 @@ import Typography from '~@components/Typography';
 import iconData from '~@data/icons';
 import { Api } from '~@types/_api';
 import NavbarContainer from './container';
-import { IoLogInSharp } from 'react-icons/io5';
+import { IoLogInSharp, IoLogOutSharp } from 'react-icons/io5';
 import NavbarItem from './item';
+import { useSession } from '~@lib/context/session.context';
+import Image from 'next/image';
+import { env } from '~@lib/env/client.mjs';
+
+function ProfileNavbarItem() {
+  const {
+    data: { authToken, session },
+  } = useSession();
+
+  return (
+    <NavbarItem className="ml-32">
+      <div className="group relative flex h-full items-center justify-center p-4">
+        {authToken ? (
+          <div className="relative aspect-square h-10 overflow-hidden">
+            <Image
+              src={`${env.NEXT_PUBLIC_API_URL}/profile/${session.id}`}
+              alt={session.displayName}
+              fill
+            />
+          </div>
+        ) : (
+          React.createElement(iconData['PeopleCicle'], { size: '2.5rem' })
+        )}
+        <div className="absolute right-0 top-full hidden rounded-b-xl bg-brutal-background group-hover:block">
+          <NavbarContainer submenu>
+            {authToken ? (
+              <NavbarItem>
+                <Typography
+                  component={Link}
+                  href="/logout"
+                  variant="title"
+                  size="small"
+                  className="flex h-full items-center justify-center gap-4"
+                >
+                  <IoLogOutSharp size="1.5em" />
+                  Logout
+                </Typography>
+              </NavbarItem>
+            ) : (
+              <NavbarItem>
+                <Typography
+                  component={Link}
+                  href="/login"
+                  variant="title"
+                  size="small"
+                  className="flex h-full items-center justify-center gap-4"
+                >
+                  <IoLogInSharp size="1.5em" />
+                  Login
+                </Typography>
+              </NavbarItem>
+            )}
+          </NavbarContainer>
+        </div>
+      </div>
+    </NavbarItem>
+  );
+}
 
 export default function NavbarComponent({
   navMenus,
@@ -87,27 +145,7 @@ export default function NavbarComponent({
               </Typography>
             </NavbarItem>
           ))}
-          <NavbarItem className="ml-32">
-            <div className="group relative flex h-full items-center justify-center p-4">
-              {React.createElement(iconData['PeopleCicle'], { size: '2.5rem' })}
-              <div className="absolute right-0 top-full hidden rounded-b-xl bg-brutal-background group-hover:block">
-                <NavbarContainer submenu>
-                  <NavbarItem>
-                    <Typography
-                      component={Link}
-                      href="/login"
-                      variant="title"
-                      size="small"
-                      className="flex h-full items-center justify-center gap-4"
-                    >
-                      <IoLogInSharp size="1.5em" />
-                      Login
-                    </Typography>
-                  </NavbarItem>
-                </NavbarContainer>
-              </div>
-            </div>
-          </NavbarItem>
+          <ProfileNavbarItem />
         </NavbarContainer>
       </div>
     </header>

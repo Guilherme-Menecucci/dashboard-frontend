@@ -1,0 +1,35 @@
+.toast-info {
+  @apply border-brutal-info
+        text-brutal-info
+        shadow-neubrutalism
+        shadow-brutal-info;
+  /* dark:border-info-300
+        dark:text-info-300; */
+}
+
+.toast-warning {
+  @apply border-brutal-warning
+        text-brutal-warning
+        shadow-neubrutalism
+        shadow-brutal-warning;
+  /* dark:border-warning-300
+        dark:text-warning-300; */
+}
+
+.toast-error {
+  @apply border-brutal-error
+        text-brutal-error
+        shadow-neubrutalism
+        shadow-brutal-error;
+  /* dark:border-error-300
+        dark:text-error-300; */
+}
+
+.toast-success {
+  @apply border-brutal-success
+        text-brutal-success
+        shadow-neubrutalism
+        shadow-brutal-success;
+  /* dark:border-success-300
+        dark:text-success-300; */
+}

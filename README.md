@@ -44,14 +44,38 @@ Use these steps to clone from SourceTree, our client for using the repository co
 
 Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
 
-- [ ] Register
-  - [ ] Validate emails comparison
-  - [ ] Verbose errors
-  - [ ] Deny duplicates registration
-- [ ] Login
-  - [ ] Login fetch
-  - [ ] Verbose errors
+---
+
+- [ ] Add Docker?
+
+- [x] Logout
+
+- [-] Register
+
+  - [x] Verbose errors
+  - [ ] (API Route) Deny duplicates registration
+
+- [-] Login
+
+  - [ ] (API Route) Login fetch
+  - [x] Verbose errors
+
+- [ ] Settings
+
+  - [ ] #1 Choice for add "HERO w/ Now Playing" / Watched Time Spent
+
+- [ ] Management CAROUSEL & HERO with Context
+
+- [ ] Movies
+
+  - [ ] #1 Check as watched
+  - [ ] #2 Add to favorite
+  - [ ] #3 Add AI(?) to make a list based on watched
+  - [ ] #4 Add AI(?) to make a list based on favorites
+  - [ ] #5 Move movies fetch API for backend
+  - [ ] #6 Use XML from TMDd for feed our Db
+
 - [ ] Images
-  - [ ] Image Optimization all at once
+  - [ ] "sizes" props warnings
 
 Managing as much as needed css clases with useState and clsx, use some "group" and "peer"

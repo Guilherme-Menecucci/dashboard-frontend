@@ -5,8 +5,9 @@ import ContextProvider from '~@lib/context/index.context';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Localhost Dashboard',
-  description: 'A personal dashboard for daily activities',
+  title: 'Plan-O-Rama',
+  description:
+    'From its intuitive interface to its comprehensive features, Plan-O-Rama empowers you to navigate your productivity landscape with ease. Say goodbye to scattered plans and hello to a breathtakingly organized life. Welcome to Plan-O-Rama, where planning becomes a panoramic masterpiece.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

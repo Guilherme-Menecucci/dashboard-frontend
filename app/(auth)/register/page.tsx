@@ -11,7 +11,7 @@ import Providers from '~@components/Providers';
 import FormComponent from './form';
 
 export const metadata: Metadata = {
-  title: 'Register',
+  title: 'Plan-O-Rama - Register',
 };
 
 const getProviders = async () => {

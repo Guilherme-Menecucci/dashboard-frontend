@@ -10,7 +10,7 @@ import Providers from '~@components/Providers';
 import FormComponent from './form';
 
 export const metadata: Metadata = {
-  title: 'Log in',
+  title: 'Plan-O-Rama - Log in',
 };
 
 const getProviders = async () => {

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Typography from '~@components/Typography';
 
 export const metadata: Metadata = {
-  title: 'Not Found',
+  title: 'Plan-O-Rama - Not Found',
 };
 
 export default function NotFound() {

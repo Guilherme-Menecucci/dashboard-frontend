@@ -1,6 +1,6 @@
 import { AxiosPromise } from 'axios';
-import { authentication_v1 } from '~@lib/types/lib/utils/fetch/api/authentication/v1';
-import { account_v1 } from '~@lib/types/lib/utils/fetch/api/account/v1';
+import { authentication_v1 } from '~@types/utils/fetch/api/authentication/v1';
+import { account_v1 } from '~@types/utils/fetch/api/account/v1';
 import { MainApi } from '~@lib/utils/fetch/api';
 
 export interface Resources$Authentication {

@@ -1,4 +1,4 @@
-import { TToastProps } from '~@lib/types/components/Toast';
+import { TToastProps } from '~@types/components/Toast';
 
 type TToastContextData = {
   /**

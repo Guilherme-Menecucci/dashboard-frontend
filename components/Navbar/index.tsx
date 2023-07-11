@@ -1,50 +1,72 @@
 'use client';
-import Link from 'next/link';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import Typography from '~@components/Typography';
 import iconData from '~@data/icons';
 import { Api } from '~@types/_api';
 import NavbarContainer from './container';
-import { IoLogInSharp, IoLogOutSharp } from 'react-icons/io5';
+import { IoCogSharp, IoLogInSharp, IoLogOutSharp } from 'react-icons/io5';
 import NavbarItem from './item';
 import { useSession } from '~@lib/context/session.context';
 import Image from 'next/image';
 import { env } from '~@lib/env/client.mjs';
+import { useRouter } from 'next/navigation';
 
 function ProfileNavbarItem() {
-  const {
-    data: { authToken, session },
-  } = useSession();
+  const { data, clearUser } = useSession();
+  const { refreshToken, session } = data;
+
+  const route = useRouter();
+
+  async function handleLogout() {
+    clearUser().then(() => {
+      route.refresh();
+    });
+  }
 
   return (
     <NavbarItem className="ml-32">
       <div className="group relative flex h-full items-center justify-center p-4">
-        {authToken ? (
-          <div className="relative aspect-square h-10 overflow-hidden">
+        {refreshToken ? (
+          <span className="relative aspect-square h-10 overflow-hidden rounded-full">
             <Image
               src={`${env.NEXT_PUBLIC_API_URL}/profile/${session.id}`}
               alt={session.displayName}
               fill
             />
-          </div>
+          </span>
         ) : (
           React.createElement(iconData['PeopleCicle'], { size: '2.5rem' })
         )}
         <div className="absolute right-0 top-full hidden rounded-b-xl bg-brutal-background group-hover:block">
           <NavbarContainer submenu>
-            {authToken ? (
-              <NavbarItem>
-                <Typography
-                  component={Link}
-                  href="/logout"
-                  variant="title"
-                  size="small"
-                  className="flex h-full items-center justify-center gap-4"
-                >
-                  <IoLogOutSharp size="1.5em" />
-                  Logout
-                </Typography>
-              </NavbarItem>
+            {refreshToken ? (
+              <>
+                <NavbarItem>
+                  <Typography
+                    component={Link}
+                    href="/settings"
+                    variant="title"
+                    size="small"
+                    className="flex h-full items-center justify-center gap-4"
+                  >
+                    <IoCogSharp size="1.5em" />
+                    Settings
+                  </Typography>
+                </NavbarItem>
+                <NavbarItem>
+                  <Typography
+                    component="div"
+                    variant="title"
+                    size="small"
+                    className="flex h-full items-center justify-center gap-4"
+                    onClick={handleLogout}
+                  >
+                    <IoLogOutSharp size="1.5em" />
+                    Logout
+                  </Typography>
+                </NavbarItem>
+              </>
             ) : (
               <NavbarItem>
                 <Typography
@@ -131,6 +153,16 @@ export default function NavbarComponent({
         className="pointer-events-none sticky top-0 z-40 flex w-full justify-center bg-brutal-background text-brutal-on-background transition-all duration-500"
       >
         <NavbarContainer ref={navContainerRef}>
+          <NavbarItem hoverable={false} className="mr-8 min-w-fit">
+            <Typography
+              component="span"
+              variant="title"
+              size="medium"
+              className="flex h-full items-center justify-center gap-4 p-4"
+            >
+              Plan-O-Rama
+            </Typography>
+          </NavbarItem>
           {navMenus.map(menu => (
             <NavbarItem key={menu.title}>
               <Typography

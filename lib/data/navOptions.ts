@@ -1,4 +1,4 @@
-import { Api } from '~@lib/types/_api';
+import { Api } from '~@types/_api';
 
 const navOptions: Api.TNavOptions = [
   { icon: 'Grid', title: 'Overview', href: '/' },

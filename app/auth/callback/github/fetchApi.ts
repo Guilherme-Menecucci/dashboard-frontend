@@ -3,17 +3,19 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getGithubSession } from 'src/lib/api/githubSession';
 import { useSession } from '~@lib/context/session.context';
+import { useToast } from '~@lib/context/toast.context';
 
 const abortApiController = new AbortController();
 
 export default function useGithubApi({ code }: { code: string }) {
   const router = useRouter();
+  const { addToast } = useToast();
 
   const [prerenderCompleted, setPrerenderCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const { saveSession } = useSession();
+  const { saveUser } = useSession();
 
   useEffect(() => {
     if (!prerenderCompleted) {
@@ -25,19 +27,28 @@ export default function useGithubApi({ code }: { code: string }) {
     (async () => {
       getGithubSession(code)
         .then(res => {
+          const { message, data } = res;
+
           setLoading(false);
 
-          saveSession(res);
+          addToast({
+            type: 'success',
+            description: message,
+          });
+          saveUser(data);
 
           router.replace('/');
-
-          // setTimeout(() => {
-          //   window.location.assign('/dashboard');
-          // }, 1500);
         })
         .catch(() => {
           setLoading(false);
           setHasError(true);
+
+          addToast({
+            type: 'error',
+            description: 'Something went wrong.',
+          });
+
+          router.replace('/login');
         });
     })();
 
@@ -48,7 +59,7 @@ export default function useGithubApi({ code }: { code: string }) {
         abortApiController.abort();
       }
     };
-  }, [code, prerenderCompleted, router, saveSession]);
+  }, [code, prerenderCompleted, router, saveUser]);
 
   return [loading, hasError];
 }

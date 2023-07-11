@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Typography from '~@components/Typography';
 
 export const metadata: Metadata = {
-  title: 'Privacy Notice',
+  title: 'Plan-O-Rama - Privacy Notice',
 };
 
 export default function Page() {
@@ -49,8 +49,8 @@ export default function Page() {
         </Typography>
 
         <Typography component="p" variant="body" size="small">
-          We make efforts to ensure the security of users' personal information on this website by
-          implementing appropriate measures to protect against unauthorized access, alteration,
+          We make efforts to ensure the security of users&apos; personal information on this website
+          by implementing appropriate measures to protect against unauthorized access, alteration,
           disclosure, or destruction. However, please note that no transmission of data over the
           internet is completely secure, and we cannot guarantee the absolute security of the
           information provided.

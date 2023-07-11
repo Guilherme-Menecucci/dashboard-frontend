@@ -1,30 +1,41 @@
 'use client';
-import { Metadata } from 'next';
-
 import { StateData } from '~@types/components/Form';
 
-import { MainApi } from '~@lib/utils/api/api';
+import { MainApi } from '~@lib/utils/fetch/api';
 import { useSession } from '~@lib/context/session.context';
 import loginFields from '~@lib/data/fields/loginFields';
 
 import { RegisterFieldsData } from '~@data/fields/registerFields';
 
 import Form from '~@components/Form';
-
-export const metadata: Metadata = {
-  title: 'Register',
-};
+import { useToast } from '~@lib/context/toast.context';
 
 export default function FormComponent() {
-  const { saveSession } = useSession();
+  const { addToast } = useToast();
+  const { saveUser } = useSession();
 
   function handleSubmit(data: StateData<RegisterFieldsData>) {
     MainApi.getV1()
-      .users.login({
+      .authentication.login({
         email: data.email,
         password: data.password,
       })
-      .then(data => saveSession(data.data));
+      .then(response => {
+        const { message, data } = response.data;
+
+        addToast({
+          type: 'success',
+          description: message,
+        });
+
+        saveUser(data);
+      })
+      .catch(() => {
+        addToast({
+          type: 'error',
+          description: 'Something went wrong.',
+        });
+      });
   }
 
   return (

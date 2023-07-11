@@ -1,71 +1,114 @@
 'use client';
-import { deleteCookie, setCookie } from 'cookies-next';
-import React, { createContext, useContext, useCallback, useState } from 'react';
+import { deleteCookie } from 'cookies-next';
+import React, { createContext, useContext, useCallback, useState, useEffect } from 'react';
+import { account_v1 } from '~@types/utils/fetch/api/account/v1';
+import { MainApi } from '~@lib/utils/fetch/api';
 // import { useCookies } from 'react-cookie';
-import { Api } from '~@types/_api';
 
-import {
-  TData,
-  TSessionContextData,
-  TSessionProviderProps,
-} from '~@types/lib/context/session.context';
+import { TData, TSessionContextData, TSessionProviderProps } from '~@types/context/session.context';
 
 const SessionContext = createContext({} as TSessionContextData);
 
-const SessionProvider = ({
-  children,
-  cookieStore,
-}: TSessionProviderProps & { cookieStore: { [x: string]: string } }) => {
-  // const [cookies, setCookie, removeCookie] = useCookies<keyof TData, TData>([
-  //   'session',
-  //   'authToken',
-  // ]);
+const SessionProvider = ({ children, cookieStore }: TSessionProviderProps) => {
   const [data, setData] = useState<TData>(() => {
-    const cookiesData = {} as TData;
+    const cookiesData = {
+      refreshToken: '',
+      session: null,
+    };
 
+    const refreshToken = cookieStore['refreshToken'];
     const session = cookieStore['session'];
-    const authToken = cookieStore['authToken'];
 
-    if (authToken && authToken !== '') {
-      cookiesData['authToken'] = authToken;
+    if (!refreshToken || refreshToken === '') {
+      return cookiesData;
     }
 
-    if (session && session !== '') {
-      cookiesData['session'] = JSON.parse(session);
+    if (!session || session === '') {
+      return cookiesData;
     }
+
+    cookiesData['refreshToken'] = refreshToken;
+    cookiesData['session'] = JSON.parse(session);
 
     return cookiesData;
   });
 
-  const saveSession = useCallback((data: Api.TSessionApi) => {
-    setCookie('authToken', data.session.authToken, {
-      domain: process.env.COOKIE_DOMAIN,
-      secure: process.env.NODE_ENV !== 'development',
-      // sameSite: 'none',
-      httpOnly: false,
-      path: '/',
-      maxAge: data.maxAge,
-    });
-    setCookie('session', data.session, {
-      domain: process.env.COOKIE_DOMAIN,
-      secure: process.env.NODE_ENV !== 'development',
-      // sameSite: 'none',
-      httpOnly: false,
-      path: '/',
-      maxAge: data.maxAge,
-    });
+  useEffect(() => {
+    const refreshToken = cookieStore['refreshToken'];
 
-    setData({ authToken: data.session.authToken, session: data.session });
+    if (!refreshToken) {
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('session');
+      deleteCookie('session');
+      return;
+    }
+
+    if (!cookieStore['session']) {
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('session');
+      deleteCookie('session');
+      return;
+    }
+
+    const session = JSON.parse(cookieStore['session']);
+
+    if (!session) {
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('session');
+      deleteCookie('refreshToken');
+    }
+
+    const localAuth = localStorage.getItem('authToken');
+
+    if (!localAuth) {
+      localStorage.setItem('refreshToken', refreshToken);
+    }
+
+    const localSession = localStorage.getItem('session');
+
+    if (!localSession) {
+      localStorage.setItem('session', JSON.stringify(session));
+    }
+  }, [cookieStore]);
+
+  const saveUser = useCallback((data: account_v1.Schema$CookieSession) => {
+    const session = data;
+
+    localStorage.setItem('session', JSON.stringify(session));
+    localStorage.setItem('refreshToken', session.refreshToken);
+
+    // setCookie('authToken', session.sessionToken, {
+    //   domain: process.env.COOKIE_DOMAIN,
+    //   secure: process.env.NODE_ENV !== 'development',
+    //   // sameSite: 'none',
+    //   httpOnly: false,
+    //   path: '/',
+    //   maxAge: data.maxAge,
+    // });
+    // setCookie('session', data.session, {
+    //   domain: process.env.COOKIE_DOMAIN,
+    //   secure: process.env.NODE_ENV !== 'development',
+    //   // sameSite: 'none',
+    //   httpOnly: false,
+    //   path: '/',
+    //   maxAge: data.maxAge,
+    // });
+
+    setData({ refreshToken: session.refreshToken, session: session });
   }, []);
 
-  const clearSession = useCallback(() => {
-    deleteCookie('authToken');
-    deleteCookie('session');
-    setData({} as TData);
+  const clearUser = useCallback(async () => {
+    return MainApi.getV1()
+      .authentication.logout()
+      .then(() => {
+        deleteCookie('authToken');
+        deleteCookie('session');
+        setData({} as TData);
+      });
   }, []);
 
   return (
-    <SessionContext.Provider value={{ data, saveSession, clearSession }}>
+    <SessionContext.Provider value={{ data, saveUser, clearUser }}>
       {children}
     </SessionContext.Provider>
   );

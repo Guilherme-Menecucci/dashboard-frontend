@@ -13,7 +13,14 @@ const NavbarContainer = forwardRef<
         submenu ? 'pb-2' : 'px-8',
       )}
     >
-      <ol className="flex h-nav w-full items-stretch justify-between gap-4">{children}</ol>
+      <ol
+        className={clsx(
+          'flex w-full',
+          submenu ? 'flex-col justify-stretch' : 'h-nav items-stretch justify-between gap-4',
+        )}
+      >
+        {children}
+      </ol>
     </div>
   );
 });

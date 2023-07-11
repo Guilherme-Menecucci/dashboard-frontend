@@ -1,6 +1,6 @@
 import { AxiosPromise } from 'axios';
-import { Api } from '~@lib/types/_api';
-import { account_v1 } from '~@lib/types/lib/utils/fetch/api/account/v1';
+import { Api } from '~@types/_api';
+import { account_v1 } from '~@types/utils/fetch/api/account/v1';
 import { MainApi } from '~@lib/utils/fetch/api';
 
 export interface Resources$Account {

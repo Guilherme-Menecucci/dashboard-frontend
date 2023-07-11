@@ -1,17 +1,36 @@
-import { Metadata } from 'next';
 import React from 'react';
-import { promiseSettled } from '~@types/lib/utils/promiseSettled';
 
-import { TMDbApi } from '~@utils/api/tmdb';
+import { promiseSettled } from '~@lib/utils/promiseSettled';
+
+import { TMDbApi } from '~@utils/fetch/tmdb';
 
 import BaseComponent, {
   BASECOMPONENTS_INHERIT,
   BaseComponentProps,
 } from '~@components/BaseComponent';
+import { movies_v3 } from '~@types/utils/fetch/tmdb/movies/v3';
 
-export const metadata: Metadata = {
-  title: 'Dashboard',
-};
+function createHeroEntitie(movie: movies_v3.Schema$Movie, index: number) {
+  return {
+    id: movie.id,
+    index: index,
+    title: movie.title,
+    description: movie.overview,
+    poster: movie.poster_path,
+    backdrop: movie.backdrop_path,
+  };
+}
+function createCarouselEntitie(movie: movies_v3.Schema$Movie, index: number) {
+  return {
+    index: index,
+    id: movie.id,
+    poster_path: movie.poster_path,
+    backdrop_path: movie.backdrop_path,
+    title: movie.title,
+    stars: Math.round((movie.vote_average + Number.EPSILON) * 10) / 10,
+    overview: movie.overview,
+  };
+}
 
 const getMovies = async () => {
   const moviesResult = await promiseSettled({
@@ -39,14 +58,7 @@ const getMovies = async () => {
           id: BASECOMPONENTS_INHERIT.STANDARD_HERO + '-' + title + '-' + index,
           component: BASECOMPONENTS_INHERIT.STANDARD_HERO,
           containers: {
-            entities: movieList.map((movie, index) => ({
-              id: movie.id,
-              index: index,
-              title: movie.title,
-              description: movie.overview,
-              poster: movie.poster_path,
-              backdrop: movie.backdrop_path,
-            })),
+            entities: movieList.map(createHeroEntitie),
           },
         };
       }
@@ -57,15 +69,7 @@ const getMovies = async () => {
           component: BASECOMPONENTS_INHERIT.SUPER_CAROUSEL,
           containers: {
             title,
-            entities: movieList.map((movie, index) => ({
-              index: index,
-              id: movie.id,
-              poster_path: movie.poster_path,
-              backdrop_path: movie.backdrop_path,
-              title: movie.title,
-              stars: Math.round((movie.vote_average + Number.EPSILON) * 10) / 10,
-              overview: movie.overview,
-            })),
+            entities: movieList.map(createCarouselEntitie),
           },
         };
       }
@@ -75,14 +79,7 @@ const getMovies = async () => {
         component: BASECOMPONENTS_INHERIT.STANDARD_CAROUSEL,
         containers: {
           title,
-          entities: movieList.map((movie, index) => ({
-            index: index,
-            id: movie.id,
-            backdrop_path: movie.backdrop_path,
-            title: movie.title,
-            stars: Math.round((movie.vote_average + Number.EPSILON) * 10) / 10,
-            overview: movie.overview,
-          })),
+          entities: movieList.map(createCarouselEntitie),
         },
       };
     },
@@ -97,7 +94,7 @@ export default async function Page() {
   return (
     <>
       {entries.map(entry => (
-        <BaseComponent key={entry.id} component={entry.component} containers={entry.containers} />
+        <BaseComponent key={entry.id} {...entry} />
       ))}
       <div className="h-[25vh]" />
     </>

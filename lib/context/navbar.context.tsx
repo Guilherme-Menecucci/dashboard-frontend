@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext } from 'react';
-import { TDefaultContextData } from '~@types/lib/context/index.context';
+import { TDefaultContextData } from '~@types/context/index.context';
 
-import { TNavbarContextData } from '~@types/lib/context/navbar.context';
+import { TNavbarContextData } from '~@types/context/navbar.context';
 
 const NavbarContext = createContext({} as TNavbarContextData);
 

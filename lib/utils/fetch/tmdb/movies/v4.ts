@@ -1,5 +1,5 @@
 import axios, { AxiosPromise } from 'axios';
-import { movies_v3 } from '~@types/lib/utils/api/tmdb/movies/v3';
+import { movies_v3 } from '~@types/lib/utils/fetch/tmdb/movies/v3';
 import { env } from '~@env/server.mjs';
 
 const fetch = axios.create({

@@ -1,8 +1,15 @@
-export declare namespace users_v1 {
+export declare namespace shared_v1 {
   export interface Options {
     version: '1';
   }
 
+  export interface Schema$Return<D extends Record<string, object>> {
+    message: string;
+    data: D;
+  }
+}
+
+export declare namespace models_v1 {
   export interface Schema$Session {
     id: string;
     sessionToken: string;

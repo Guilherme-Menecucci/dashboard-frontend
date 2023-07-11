@@ -1,5 +1,5 @@
 import { Api } from '~@types/_api';
-import { movies_v3 } from '~@types/lib/utils/api/tmdb/movies/v3';
+import { movies_v3 } from '~@types/lib/utils/fetch/tmdb/movies/v3';
 
 export interface IDashboardProps {
   movies: {

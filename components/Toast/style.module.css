@@ -1,35 +1,75 @@
-.toast-info {
-  @apply border-brutal-info
-        text-brutal-info
-        shadow-neubrutalism
-        shadow-brutal-info;
-  /* dark:border-info-300
-        dark:text-info-300; */
+/* #region Success */
+.toast-success > div:nth-child(1) {
+  @apply border-r-brutal-success;
 }
 
-.toast-warning {
-  @apply border-brutal-warning
-        text-brutal-warning
-        shadow-neubrutalism
-        shadow-brutal-warning;
-  /* dark:border-warning-300
-        dark:text-warning-300; */
+.toast-success > div:nth-child(2),
+.toast-success > div:nth-child(3) {
+  @apply bg-brutal-success;
 }
 
-.toast-error {
-  @apply border-brutal-error
-        text-brutal-error
-        shadow-neubrutalism
-        shadow-brutal-error;
-  /* dark:border-error-300
-        dark:text-error-300; */
+.toast-success > div:nth-child(4) {
+  @apply border-t-brutal-success;
 }
 
-.toast-success {
-  @apply border-brutal-success
-        text-brutal-success
-        shadow-neubrutalism
-        shadow-brutal-success;
-  /* dark:border-success-300
-        dark:text-success-300; */
+.toast-success > div:nth-child(5) {
+  @apply border-brutal-success text-brutal-success;
 }
+/* #endregion */
+
+/* #region Warning */
+.toast-warning > div:nth-child(1) {
+  @apply border-r-brutal-warning;
+}
+
+.toast-warning > div:nth-child(2),
+.toast-warning > div:nth-child(3) {
+  @apply bg-brutal-warning;
+}
+
+.toast-warning > div:nth-child(4) {
+  @apply border-t-brutal-warning;
+}
+
+.toast-warning > div:nth-child(5) {
+  @apply border-brutal-warning text-brutal-warning;
+}
+/* #endregion */
+
+/* #region Info */
+.toast-info > div:nth-child(1) {
+  @apply border-r-brutal-info;
+}
+
+.toast-info > div:nth-child(2),
+.toast-info > div:nth-child(3) {
+  @apply bg-brutal-info;
+}
+
+.toast-info > div:nth-child(4) {
+  @apply border-t-brutal-info;
+}
+
+.toast-info > div:nth-child(5) {
+  @apply border-brutal-info text-brutal-info;
+}
+/* #endregion */
+
+/* #region Error */
+.toast-error > div:nth-child(1) {
+  @apply border-r-brutal-error;
+}
+
+.toast-error > div:nth-child(2),
+.toast-error > div:nth-child(3) {
+  @apply bg-brutal-error;
+}
+
+.toast-error > div:nth-child(4) {
+  @apply border-t-brutal-error;
+}
+
+.toast-error > div:nth-child(5) {
+  @apply border-brutal-error text-brutal-error;
+}
+/* #endregion */

@@ -53,19 +53,21 @@ const ToastProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
       <TransitionGroup
         id="toast-container"
-        className="fixed inset-x-5 bottom-36 z-50 mx-auto flex h-0 flex-col-reverse sm:bottom-0 sm:left-0 sm:right-full sm:w-fit sm:translate-x-0"
+        className="fixed inset-x-5 bottom-36 z-50 mx-auto flex flex-col sm:bottom-0 sm:left-0 sm:right-full sm:w-fit sm:translate-x-0"
       >
         {toastList.length != 0
-          ? toastList.map(toast => (
-              <CSSTransition key={toast.id} nodeRef={toast.ref} timeout={500} classNames="slide">
-                <Toast
-                  ref={toast.ref}
-                  type={toast.type}
-                  title={toast.title}
-                  description={toast.description}
-                />
-              </CSSTransition>
-            ))
+          ? toastList
+              .map(toast => (
+                <CSSTransition key={toast.id} nodeRef={toast.ref} timeout={500} classNames="slide">
+                  <Toast
+                    ref={toast.ref}
+                    type={toast.type}
+                    title={toast.title}
+                    description={toast.description}
+                  />
+                </CSSTransition>
+              ))
+              .reverse()
           : null}
       </TransitionGroup>
     </ToastContext.Provider>

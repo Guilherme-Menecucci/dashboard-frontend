@@ -1,4 +1,4 @@
-import { TToastProps } from '~@types/components/Toast';
+import { TToastProps } from '~@lib/types/components/Toast';
 
 type TToastContextData = {
   /**
@@ -6,7 +6,7 @@ type TToastContextData = {
    * Adds a toast to the list
    * @returns Return de id of the toast created, in case to remove early
    */
-  addToast(data: IToastProps): string;
+  addToast(data: TToastProps): string;
 
   /**
    * @function removeToast

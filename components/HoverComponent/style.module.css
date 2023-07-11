@@ -74,6 +74,82 @@
 }
 /* #endregion */
 
+/* #region Success */
+.HoverComponent-success > div:nth-child(1) {
+  @apply border-r-brutal-success;
+}
+
+.HoverComponent-success > div:nth-child(2),
+.HoverComponent-success > div:nth-child(3) {
+  @apply bg-brutal-success;
+}
+
+.HoverComponent-success > div:nth-child(4) {
+  @apply border-t-brutal-success;
+}
+
+.HoverComponent-success > div:nth-child(5) {
+  @apply border-brutal-success;
+}
+/* #endregion */
+
+/* #region Warning */
+.HoverComponent-warning > div:nth-child(1) {
+  @apply border-r-brutal-warning;
+}
+
+.HoverComponent-warning > div:nth-child(2),
+.HoverComponent-warning > div:nth-child(3) {
+  @apply bg-brutal-warning;
+}
+
+.HoverComponent-warning > div:nth-child(4) {
+  @apply border-t-brutal-warning;
+}
+
+.HoverComponent-warning > div:nth-child(5) {
+  @apply border-brutal-warning;
+}
+/* #endregion */
+
+/* #region Info */
+.HoverComponent-info > div:nth-child(1) {
+  @apply border-r-brutal-info;
+}
+
+.HoverComponent-info > div:nth-child(2),
+.HoverComponent-info > div:nth-child(3) {
+  @apply bg-brutal-info;
+}
+
+.HoverComponent-info > div:nth-child(4) {
+  @apply border-t-brutal-info;
+}
+
+.HoverComponent-info > div:nth-child(5) {
+  @apply border-brutal-info;
+}
+/* #endregion */
+
+/* #region Error */
+.HoverComponent-error > div:nth-child(1) {
+  @apply border-r-brutal-error;
+}
+
+.HoverComponent-error > div:nth-child(2),
+.HoverComponent-error > div:nth-child(3) {
+  @apply bg-brutal-error;
+}
+
+.HoverComponent-error > div:nth-child(4) {
+  @apply border-t-brutal-error;
+}
+
+.HoverComponent-error > div:nth-child(5) {
+  @apply border-brutal-error;
+}
+/* #endregion */
+
 /* #region Black */
 .HoverComponent-black > div:nth-child(1) {
   @apply border-r-brutal-black;

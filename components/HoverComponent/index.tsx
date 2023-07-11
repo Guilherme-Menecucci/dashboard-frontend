@@ -6,7 +6,7 @@ import styles from './style.module.css';
 interface HoverComponentProps {
   children: React.ReactNode;
   className?: string;
-  color?: App.TThemeColors | 'black' | 'white';
+  color?: App.TThemeColors | App.TStatus | 'black' | 'white';
   active?: boolean;
 }
 

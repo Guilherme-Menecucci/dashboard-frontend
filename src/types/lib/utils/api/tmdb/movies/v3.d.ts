@@ -27,4 +27,13 @@ export declare namespace movies_v3 {
     total_pages: number;
     total_results: number;
   }
+
+  export interface Schema$Genre {
+    id: number;
+    name: string;
+  }
+
+  export interface Schema$Genres {
+    genres: Schema$Genre[];
+  }
 }

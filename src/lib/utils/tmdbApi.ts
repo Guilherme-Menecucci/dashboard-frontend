@@ -1,12 +1,12 @@
-import { env } from '~@env/client.mjs';
-import { Api } from '~@types/_api';
+import { env } from '~@env/server.mjs';
+import { movies_v3 } from '~@types/lib/utils/api/tmdb/movies/v3';
 
 const abortApiController = new AbortController();
 
-function fetchTMDBApi(code: string) {
-  return new Promise<Api.TSessionApi>((resolve, reject) => {
-    const url = new URL(env.NEXT_PUBLIC_API_URL + '/auth/callback/github');
-    url.search = new URLSearchParams({ code }).toString();
+function fetchTMDBApi<T>(fetchUrl: string) {
+  return new Promise<T>((resolve, reject) => {
+    const url = new URL(env.NEXT_PUBLIC_TMDB_URL + fetchUrl);
+    url.search = new URLSearchParams({ api_key: env.TMDB_V3_KEY, language: 'en-US' }).toString();
 
     fetch(url)
       .then(res => res.json())

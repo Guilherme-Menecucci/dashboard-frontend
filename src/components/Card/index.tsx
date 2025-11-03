@@ -23,14 +23,14 @@ const Card = ({
         <div className="absolute w-full overflow-hidden p-[56.25%]">
           <Image
             src="https://www.fillmurray.com/192/192"
-            layout="fill"
+            fill
             objectFit="contain"
             alt=""
             className="w-full"
           />
         </div>
       </div>
-      <div className="flex w-full flex-col justify-between rounded-b border-x border-b border-gray-400 bg-white p-4 leading-normal lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400">
+      <div className="flex w-full flex-col justify-between rounded-b border-x border-b border-gray-400 bg-white p-4 leading-normal lg:rounded-r lg:rounded-b-none lg:border-t lg:border-l-0 lg:border-gray-400">
         <div className="mb-8">
           <p className="flex items-center text-sm text-gray-600">
             <svg

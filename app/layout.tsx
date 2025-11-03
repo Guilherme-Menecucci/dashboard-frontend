@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import ContextProvider from '~@lib/context/index.context';
 
+import MainContainer from '~@components/MainComponent';
 import { syneFont, bebasNeueFont, karlaFont } from './fonts';
 import './globals.css';
 
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${syneFont.variable} ${bebasNeueFont.variable} ${karlaFont.variable}`}
     >
       <body className="overflow-hidden">
-        <ContextProvider>{children}</ContextProvider>
+        <ContextProvider>
+          <MainContainer>{children}</MainContainer>
+        </ContextProvider>
       </body>
     </html>
   );

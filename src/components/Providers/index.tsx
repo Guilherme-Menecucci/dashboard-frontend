@@ -17,15 +17,10 @@ const Providers = ({ providers }: TProvidersProps) => {
         <button
           key={provider.id}
           onClick={() => handleClick(provider.callback)}
-          className="relative aspect-square overflow-hidden border-4 border-brutal-black bg-brutal-primary p-4 shadow-none shadow-transparent backdrop-blur-sm transition-all duration-500 hover:bg-brutal-secondary hover:shadow-neubrutalism hover:shadow-brutal-black"
+          className="border-brutal-black bg-brutal-primary hover:bg-brutal-secondary hover:shadow-neubrutalism hover:shadow-brutal-black relative aspect-square overflow-hidden border-4 p-4 shadow-none shadow-transparent backdrop-blur-sm transition-all duration-500"
         >
           <div className="relative h-12 w-12">
-            <Image
-              alt={'Log with ' + provider.id}
-              src={provider.src}
-              layout="fill"
-              objectFit="contain"
-            />
+            <Image alt={'Log with ' + provider.id} src={provider.src} fill objectFit="contain" />
           </div>
         </button>
       ))}

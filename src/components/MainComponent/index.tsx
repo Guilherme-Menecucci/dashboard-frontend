@@ -4,7 +4,7 @@ type MainContainerProps = {
 
 const MainContainer: React.FunctionComponent<MainContainerProps> = ({ children }) => {
   return (
-    <main className="h-screen flex-1 overflow-y-auto overflow-x-hidden bg-brutal-background text-brutal-on-background">
+    <main className="bg-brutal-background text-brutal-on-background h-screen flex-1 overflow-x-hidden overflow-y-auto">
       {children}
     </main>
   );
